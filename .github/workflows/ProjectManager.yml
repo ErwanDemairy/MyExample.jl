@@ -8,22 +8,3 @@ jobs:
     runs-on: ubuntu-latest
     steps:
         - uses: jenschelkopf/project-card-moved-notification@1.0
-on:
-    project_card:
-      types: [moved, created]
-jobs:
-    label_issues:
-      #      if: endsWith( "Todo", github.event.project_card.column_url )
-      runs-on: ubuntu-latest
-      permissions:
-        issues: write
-      steps:
-        - uses: actions/github-script@v6
-          with:
-            script: |
-              github.rest.issues.addLabels({
-                issue_number: context.issue.number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                labels: ["TODO"]
-              })
