@@ -3,21 +3,18 @@ on:
     project_card:
       types: moved
 jobs:
-    change_label:
+    label_issues:
       if: endsWith( "Todo", github.event.project_card.column_url )
       runs-on: ubuntu-latest
       permissions:
         issues: write
-        pull-requests: write
       steps:
         - uses: actions/github-script@v6
           with:
             script: |
-              // this gets the number at the end of the content URL, which should be the issue/PR number
-              const issue_num = context.payload.project_card.column_url.split('/').pop()
-              github.rest.issues.addLabel({
-                issue_number: issue_num,
+              github.rest.issues.addLabels({
+                issue_number: context.issue.number,
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                name: ["TODO"]
+                labels: ["TODO"]
               })
