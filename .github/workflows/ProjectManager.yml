@@ -1,10 +1,10 @@
 name: ProjectManager
 on:
     project_card:
-      types: moved
+      types: [moved, created]
 jobs:
     label_issues:
-      if: endsWith( "Todo", github.event.project_card.column_url )
+      #      if: endsWith( "Todo", github.event.project_card.column_url )
       runs-on: ubuntu-latest
       permissions:
         issues: write
