@@ -14,7 +14,7 @@ jobs:
           with:
             script: |
               // this gets the number at the end of the content URL, which should be the issue/PR number
-              const issue_num = context.payload.project_card.content_url.split('/').pop()
+              const issue_num = context.payload.project_card.column_url.split('/').pop()
               github.rest.issues.addLabel({
                 issue_number: issue_num,
                 owner: context.repo.owner,
