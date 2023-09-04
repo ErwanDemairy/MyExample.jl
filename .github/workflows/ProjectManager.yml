@@ -4,7 +4,7 @@ on:
       types: moved
 				jobs:
 						change_label:
-								if: endsWith( "To Do", github.event.project_card.column_url )
+								if: endsWith( "Todo", github.event.project_card.column_url )
 								runs-on: ubuntu-latest
 								permissions:
 										issues: write
